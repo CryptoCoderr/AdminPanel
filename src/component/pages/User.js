@@ -52,13 +52,13 @@ function User() {
                   })}
               </TableBody>
             </Table>
+            {user_data.length > 0 ? (
+              ""
+            ) : (
+              <div className="text-center py-20">No data to show ...</div>
+            )}
           </TableContainer>
         </Paper>
-        {user_data.length > 0 ? (
-          ""
-        ) : (
-          <div className="text-center">No data to show ...</div>
-        )}
       </div>
     </div>
   );

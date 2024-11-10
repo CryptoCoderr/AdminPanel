@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { url } from "./Url";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Toasters, { errors, notify } from "./Toaster";
 
 function Home() {
   const [username, setusername] = useState();
@@ -9,12 +10,16 @@ function Home() {
 
   const handleSubmit = async () => {
     try {
+      if (!username || !email) {
+        errors("Please fill all field...");
+        return;
+      }
       const data = await axios.post(`${url}/post-user`, {
         username: username,
         email: email,
       });
       if (data) {
-        alert("User is subscribed...");
+        notify("User is subscribed...");
       }
     } catch (error) {
       console.log(error);
@@ -62,6 +67,7 @@ function Home() {
           </Link>
         </div>
       </div>
+      <Toasters />
     </div>
   );
 }
